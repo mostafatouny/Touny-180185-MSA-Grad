@@ -1,0 +1,36 @@
+{% from 'macros.html' import card as card %}
+
+{% extends 'base.html' %}
+
+{% block title %} Basic Stat {% endblock %}
+
+{% block leftHead %} Summary & Word Cloud {% endblock %}
+{% block leftDescription %} some desc {% endblock %}
+
+{% block leftContent %}
+
+{% if imageEncode_in %}
+<p> imgEnc here </p>
+<img src= {{ imageEncode_in }}>
+{% endif %}
+
+{% if summary %}
+<p> summary here: {{ summary }} </p>
+{% endif %}
+
+
+<br>
+{% endblock %}
+
+{% block rightHead %} Result {% endblock %}
+{% block rightDescription %} result desc {% endblock %}
+
+{% block rightContent %}
+cards here
+{% endblock %}
+
+
+{% block nextStage %} NONE {% endblock %}
+{% block nextStageURL %}#{% endblock %}
+
+{% block script %} {% endblock %}
