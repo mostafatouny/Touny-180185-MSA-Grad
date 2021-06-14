@@ -1,0 +1,49 @@
+{% from 'macros.html' import card as card %}
+
+{% extends 'base.html' %}
+
+{% block title %} Welcome {% endblock %}
+
+{% block leftHead %} Welcome {% endblock %}
+{% block leftDescription %} Hope you enjoy it {% endblock %}
+
+{% block leftContent %}
+Through our app you could do bla bla
+{% endblock %}
+
+{% block rightHead %} Personalization Source {% endblock %}
+{% block rightDescription %}  {% endblock %}
+
+{% block rightContent %}
+
+{% call card('One', 'User Tweets') %}
+<form method="post" action="{{ url_for('fetchPersonalizationSource') }}">
+	<label for="userName" class="mr-sm-2">Screen Name:</label>
+	<input type="text" class="form-control mb-2 mr-sm-2" name="userScreenName_in">
+	<input type="submit" value="Proceed" class="btn btn-primary mt-2">
+	<input type="hidden" name="source_in" value="1">
+</form> 
+{% endcall %}
+
+{% call card('Two', 'Tweets User Interacted') %}
+<form method="post" action="{{ url_for('fetchPersonalizationSource') }}">
+	<label for="userName" class="mr-sm-2">Screen Name:</label>
+	<input type="text" class="form-control mb-2 mr-sm-2" name="userScreenName_in">
+	
+	<input type="submit" value="Proceed" class="btn btn-primary mt-2">
+	<input type="hidden" name="source_in" value="2">
+</form> 
+{% endcall %}
+
+{% call card('Three', 'None') %}
+<form method="post" action="{{ url_for('fetchPersonalizationSource') }}">
+	<input type="submit" value="Proceed" class="btn btn-primary mt-2">
+	<input type="hidden" name="source_in" value="-1">
+</form> 
+{% endcall %}
+
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}

@@ -1,0 +1,27 @@
+{% from 'macros.html' import card as card %}
+
+{% extends 'base.html' %}
+
+{% block title %} Target Tweets {% endblock %}
+
+{% block leftHead %} Themes' Word Cloud & Summary  {% endblock %}
+{% block leftDescription %} Word cloud of major themes, and representative tweets for each topic {% endblock %}
+
+{% block leftContent %}
+
+{% for el in imgSumList %}
+<img src= {{ el[0] }}>
+<p> {{ el[1] }} </p>
+{% endfor %}
+
+<br>
+
+{% endblock %}
+
+{% block rightHead %} {% endblock %}
+{% block rightDescription %} {% endblock %}
+
+{% block rightContent %}
+{% endblock %}
+
+{% block script %} {% endblock %}

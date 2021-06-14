@@ -1,0 +1,92 @@
+{% from 'macros.html' import card as card %}
+{% from 'macros.html' import modal as modal %}
+
+{% extends 'base.html' %}
+
+{% block title %} Personalization Tweets {% endblock %}
+
+{% block leftHead %} {% if source==-1 %}No Personalization is Chosen {% else %} Personalization Tweets {% endif %}  {% endblock %}
+{% block leftDescription %} Tweets from which taste is approximated {% endblock %}
+
+{% block leftContent %}
+{% if list_2d %}
+<table class="table table-dark table-hover text-center">
+	<thead>
+	  <tr>
+	    {% for ele in columnsNames %}
+	    <th> {{ ele }} </th>
+	    {% endfor %}
+	  </tr>
+	</thead>
+	<tbody>
+	  {% for row in list_2d %}
+	  {% set outer_loop = loop %}
+	  <tr>
+	    {% for ele in row %}
+	    <td> {{ ele }} </td>
+	    {% endfor %}
+	  </tr>
+	  {% endfor %}
+	</tbody>
+</table>
+{% endif %}
+{% endblock %}
+
+
+{% block rightHead %} Target Tweets {% endblock %}
+{% block rightDescription %} Tweets to be summarized {% endblock %}
+
+{% block rightContent %}
+
+{% if source==-1 %}
+{% call card('One', 'User Tweets') %}
+<form method="post" action="{{ url_for('fetchTargetSource') }}">
+	<label for="userName" class="mr-sm-2">Screen Name:</label>
+	<input type="text" class="form-control mb-2 mr-sm-2" name="userScreenName_in_0">
+	<input type="text" class="form-control mb-2 mr-sm-2" name="userScreenName_in_1">
+	<input type="text" class="form-control mb-2 mr-sm-2" name="userScreenName_in_2">
+	<input type="submit" value="Proceed" class="btn btn-primary mt-2">
+	<input type="hidden" name="target_in" value="1">
+</form> 
+{% endcall %}
+{% endif %}
+
+{% if source==-1 %}
+{% call card('Two', 'Tweets User Interacted') %}
+<form method="post" action="{{ url_for('fetchTargetSource') }}">
+	<label for="userName" class="mr-sm-2">Screen Name:</label>
+	<input type="text" class="form-control mb-2 mr-sm-2" name="userScreenName_in_0">
+	<input type="text" class="form-control mb-2 mr-sm-2" name="userScreenName_in_1">
+	<input type="text" class="form-control mb-2 mr-sm-2" name="userScreenName_in_2">
+	<input type="submit" value="Proceed" class="btn btn-primary mt-2">
+	<input type="hidden" name="target_in" value="2">
+</form> 
+{% endcall %}
+{% endif %}
+
+{% if source==1 or source==2 %}
+{% call card('Three', 'Global Search') %}
+<form method="post" action="{{ url_for('fetchTargetSource') }}">
+	<input type="submit" value="Proceed" class="btn btn-primary mt-2">
+	<input type="hidden" name="target_in" value="3">
+</form> 
+{% endcall %}
+{% endif %}
+
+{% if source==-1 %}
+{% call card('Four', 'Global Search Manual Input') %}
+<form method="post" action="{{ url_for('fetchTargetSource') }}">
+	<label for="entity" class="mr-sm-2">Entity:</label>
+	<input type="text" class="form-control mb-2 mr-sm-2" name="entity_in_0">
+	<input type="text" class="form-control mb-2 mr-sm-2" name="entity_in_1">
+	<input type="text" class="form-control mb-2 mr-sm-2" name="entity_in_2">
+	<input type="submit" value="Proceed" class="btn btn-primary mt-2">
+	<input type="hidden" name="target_in" value="4">
+</form> 
+{% endcall %}
+{% endif %}
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}
